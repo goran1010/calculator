@@ -62,6 +62,9 @@ multiplicationButton.addEventListener(`click`, (e) => {
 const numberButtons = Array.from(document.querySelectorAll(`.numberButton`));
 numberButtons.forEach((element) => {
   element.addEventListener(`click`, (e) => {
+    if (!currentNumber && e.target.textContent == 0) {
+      return;
+    }
     if (operator === `equals`) {
       if (!currentNumber) {
         currentNumber = e.target.textContent;

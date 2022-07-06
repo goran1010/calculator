@@ -36,6 +36,10 @@ body {
   padding: 5px;
   border-radius: 5px;
 }
+
+.button:active {
+  border: 2px solid rgb(243, 243, 77);
+}
 .button {
   border: 2px solid black;
   width: 30px;
