@@ -39,6 +39,7 @@ body {
 
 .button:active {
   border: 2px solid rgb(243, 243, 77);
+  transform: scale(1.2);
 }
 .button {
   border: 2px solid black;
