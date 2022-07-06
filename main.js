@@ -17,6 +17,35 @@ function divide(a, b) {
   return Number(a) / Number(b);
 }
 
+function calculate(e) {
+  if (e.target.textContent === `+`) {
+    currentOperator = add;
+  } else if (e.target.textContent === `-`) {
+    currentOperator = subtract;
+  } else if (e.target.textContent === `*`) {
+    currentOperator = multiply;
+  } else {
+    currentOperator = divide;
+  }
+  if (operator === `equals`) {
+    operator = currentOperator;
+    return;
+  }
+  if (!operator) {
+    if (!currentNumber) {
+      return;
+    }
+    operator = currentOperator;
+    previousNumber = currentNumber;
+    currentNumber = undefined;
+  } else if (currentNumber) {
+    previousNumber = operator(previousNumber, currentNumber);
+    currentNumber = undefined;
+    operator = currentOperator;
+    calculatorScreen.textContent = previousNumber;
+  }
+}
+
 const calculatorScreen = document.querySelector(`#screen`);
 
 const clearButton = document.querySelector(`#buttonClear`);
@@ -38,26 +67,17 @@ equalsButton.addEventListener(`click`, (e) => {
   operator = `equals`;
 });
 
+const subtractionButton = document.getElementById(`buttonSubtraction`);
+subtractionButton.addEventListener(`click`, calculate);
+
+const divisionButton = document.getElementById(`buttonDivision`);
+divisionButton.addEventListener(`click`, calculate);
+
+const additionButton = document.getElementById(`buttonAddition`);
+additionButton.addEventListener(`click`, calculate);
+
 const multiplicationButton = document.getElementById(`buttonMultiplication`);
-multiplicationButton.addEventListener(`click`, (e) => {
-  if (operator === `equals`) {
-    operator = multiply;
-    return;
-  }
-  if (!operator) {
-    if (!currentNumber) {
-      return;
-    }
-    operator = multiply;
-    previousNumber = currentNumber;
-    currentNumber = undefined;
-  } else if (currentNumber) {
-    previousNumber = operator(previousNumber, currentNumber);
-    currentNumber = undefined;
-    operator = multiply;
-    calculatorScreen.textContent = previousNumber;
-  }
-});
+multiplicationButton.addEventListener(`click`, calculate);
 
 const numberButtons = Array.from(document.querySelectorAll(`.numberButton`));
 numberButtons.forEach((element) => {
