@@ -3,18 +3,18 @@ let currentNumber;
 let operator;
 
 function add(a, b) {
-  return Math.round((Number(a) + Number(b)) * 10000) / 10000;
+  return Math.round((Number(a) + Number(b)) * 1000000) / 1000000;
 }
 function subtract(a, b) {
-  return Math.round((Number(a) - Number(b)) * 10000) / 10000;
+  return Math.round((Number(a) - Number(b)) * 1000000) / 1000000;
 }
 function multiply(a, b) {
-  return Math.round(Number(a) * Number(b) * 10000) / 10000;
+  return Math.round(Number(a) * Number(b) * 1000000) / 1000000;
 }
 
 function divide(a, b) {
   if (b == 0) return;
-  return Math.round((Number(a) / Number(b)) * 10000) / 10000;
+  return Math.round((Number(a) / Number(b)) * 1000000) / 1000000;
 }
 
 function calculate(e) {
