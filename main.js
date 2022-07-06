@@ -3,21 +3,27 @@ let currentNumber;
 let operator;
 
 function add(a, b) {
-  return Number(a) + Number(b);
+  return Math.round((Number(a) + Number(b)) * 10000) / 10000;
 }
 function subtract(a, b) {
-  return Number(a) - Number(b);
+  return Math.round((Number(a) - Number(b)) * 10000) / 10000;
 }
 function multiply(a, b) {
-  return Number(a) * Number(b);
+  return Math.round(Number(a) * Number(b) * 10000) / 10000;
 }
 
 function divide(a, b) {
   if (b == 0) return;
-  return Number(a) / Number(b);
+  return Math.round((Number(a) / Number(b)) * 10000) / 10000;
 }
 
 function calculate(e) {
+  if (currentNumber == 0 && operator == divide) {
+    previousNumber = undefined;
+    currentNumber = undefined;
+    operator = undefined;
+    calculatorScreen.textContent = `ERROR`;
+  }
   if (e.target.textContent === `+`) {
     currentOperator = add;
   } else if (e.target.textContent === `-`) {
@@ -29,12 +35,14 @@ function calculate(e) {
   }
   if (operator === `equals`) {
     operator = currentOperator;
+    calculatorScreen.textContent = `${previousNumber} ${e.target.textContent}`;
     return;
   }
   if (!operator) {
     if (!currentNumber) {
       return;
     }
+    calculatorScreen.textContent = `${currentNumber} ${e.target.textContent}`;
     operator = currentOperator;
     previousNumber = currentNumber;
     currentNumber = undefined;
@@ -42,7 +50,7 @@ function calculate(e) {
     previousNumber = operator(previousNumber, currentNumber);
     currentNumber = undefined;
     operator = currentOperator;
-    calculatorScreen.textContent = previousNumber;
+    calculatorScreen.textContent = `${previousNumber} ${e.target.textContent}`;
   }
 }
 
@@ -58,6 +66,12 @@ clearButton.addEventListener(`click`, (e) => {
 
 const equalsButton = document.getElementById(`buttonEquals`);
 equalsButton.addEventListener(`click`, (e) => {
+  if (currentNumber == 0 && operator == divide) {
+    previousNumber = undefined;
+    currentNumber = undefined;
+    operator = undefined;
+    calculatorScreen.textContent = `ERROR`;
+  }
   if (!previousNumber || !operator || !currentNumber) {
     return;
   }
@@ -82,7 +96,7 @@ multiplicationButton.addEventListener(`click`, calculate);
 const numberButtons = Array.from(document.querySelectorAll(`.numberButton`));
 numberButtons.forEach((element) => {
   element.addEventListener(`click`, (e) => {
-    if (!currentNumber && e.target.textContent == 0) {
+    if (!previousNumber && !currentNumber && e.target.textContent == 0) {
       return;
     }
     if (operator === `equals`) {
