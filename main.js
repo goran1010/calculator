@@ -36,6 +36,7 @@ function calculate(e) {
   if (operator === `equals`) {
     operator = currentOperator;
     calculatorScreen.textContent = `${previousNumber} ${e.target.textContent}`;
+    currentNumber = undefined;
     return;
   }
   if (!operator) {
@@ -53,6 +54,18 @@ function calculate(e) {
     calculatorScreen.textContent = `${previousNumber} ${e.target.textContent}`;
   }
 }
+
+const subtractionButton = document.getElementById(`buttonSubtraction`);
+subtractionButton.addEventListener(`click`, calculate);
+
+const divisionButton = document.getElementById(`buttonDivision`);
+divisionButton.addEventListener(`click`, calculate);
+
+const additionButton = document.getElementById(`buttonAddition`);
+additionButton.addEventListener(`click`, calculate);
+
+const multiplicationButton = document.getElementById(`buttonMultiplication`);
+multiplicationButton.addEventListener(`click`, calculate);
 
 const calculatorScreen = document.querySelector(`#screen`);
 
@@ -81,18 +94,6 @@ equalsButton.addEventListener(`click`, (e) => {
   operator = `equals`;
 });
 
-const subtractionButton = document.getElementById(`buttonSubtraction`);
-subtractionButton.addEventListener(`click`, calculate);
-
-const divisionButton = document.getElementById(`buttonDivision`);
-divisionButton.addEventListener(`click`, calculate);
-
-const additionButton = document.getElementById(`buttonAddition`);
-additionButton.addEventListener(`click`, calculate);
-
-const multiplicationButton = document.getElementById(`buttonMultiplication`);
-multiplicationButton.addEventListener(`click`, calculate);
-
 const numberButtons = Array.from(document.querySelectorAll(`.numberButton`));
 numberButtons.forEach((element) => {
   element.addEventListener(`click`, (e) => {
@@ -102,8 +103,10 @@ numberButtons.forEach((element) => {
     if (operator === `equals`) {
       if (!currentNumber) {
         currentNumber = e.target.textContent;
+        previousNumber = currentNumber;
       } else {
         currentNumber += e.target.textContent;
+        previousNumber = currentNumber;
       }
     } else if (!currentNumber) {
       currentNumber = e.target.textContent;

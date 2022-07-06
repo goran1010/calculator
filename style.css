@@ -52,6 +52,7 @@ body {
   align-items: center;
   background-color: rgb(134, 130, 130);
   border-radius: 5px;
+  cursor: pointer;
 }
 #buttonDivision,
 #buttonAddition,
