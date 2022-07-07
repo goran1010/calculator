@@ -42,9 +42,6 @@ body {
   cursor: default;
 }
 
-.button:hover {
-  transform: scale(1.2);
-}
 .button {
   border: 2px solid black;
   width: 30px;
