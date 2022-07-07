@@ -98,13 +98,18 @@ equalsButton.addEventListener(`click`, (e) => {
 const numberButtons = Array.from(document.querySelectorAll(`.numberButton`));
 numberButtons.forEach((element) => {
   element.addEventListener(`click`, (e) => {
+    if (currentNumber) {
+      console.log(currentNumber.length);
+      {
+        if (Number(currentNumber.length) > 15) return;
+      }
+    }
     if (
       currentNumber &&
       currentNumber.includes(`.`) &&
       e.target.textContent == `.`
     )
       return;
-    if (Number(currentNumber) > 9999999999999) return;
     if ((!currentNumber || currentNumber == 0) && e.target.textContent == `.`) {
       currentNumber = `0.`;
       calculatorScreen.textContent = currentNumber;
