@@ -89,6 +89,7 @@ equalsButton.addEventListener(`click`, (e) => {
   if (!previousNumber || !operator || !currentNumber) {
     return;
   }
+  if (previousNumber && currentNumber && operator == `equals`) return;
   previousNumber = operator(previousNumber, currentNumber);
   calculatorScreen.textContent = previousNumber;
   currentNumber = undefined;
@@ -99,10 +100,7 @@ const numberButtons = Array.from(document.querySelectorAll(`.numberButton`));
 numberButtons.forEach((element) => {
   element.addEventListener(`click`, (e) => {
     if (currentNumber) {
-      console.log(currentNumber.length);
-      {
-        if (Number(currentNumber.length) > 15) return;
-      }
+      if (Number(currentNumber.length) > 15) return;
     }
     if (
       currentNumber &&
