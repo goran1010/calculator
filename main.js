@@ -98,9 +98,43 @@ equalsButton.addEventListener(`click`, (e) => {
 const numberButtons = Array.from(document.querySelectorAll(`.numberButton`));
 numberButtons.forEach((element) => {
   element.addEventListener(`click`, (e) => {
+    if (
+      currentNumber &&
+      currentNumber.includes(`.`) &&
+      e.target.textContent == `.`
+    )
+      return;
     if (Number(currentNumber) > 9999999999999) return;
-    if (!currentNumber && e.target.textContent == `.`) return;
-    if (!previousNumber && !currentNumber && e.target.textContent == 0) {
+    if ((!currentNumber || currentNumber == 0) && e.target.textContent == `.`) {
+      currentNumber = `0.`;
+      calculatorScreen.textContent = currentNumber;
+      return;
+    }
+    if (currentNumber == `0.` && e.target.textContent == `.`) {
+      return;
+    }
+    if (currentNumber && currentNumber.includes(`.`)) {
+      currentNumber += e.target.textContent;
+      calculatorScreen.textContent = currentNumber;
+      return;
+    }
+    if (
+      currentNumber &&
+      currentNumber.includes(`.`) &&
+      e.target.textContent == `0`
+    ) {
+      currentNumber += e.target.textContent;
+      calculatorScreen.textContent = currentNumber;
+      return;
+    }
+    if (currentNumber == 0 && e.target.textContent == 0) {
+      currentNumber = 0;
+      calculatorScreen.textContent = currentNumber;
+      return;
+    }
+    if (!previousNumber && currentNumber == 0 && e.target.textContent != 0) {
+      currentNumber = e.target.textContent;
+      calculatorScreen.textContent = currentNumber;
       return;
     }
     if (operator === `equals`) {
@@ -119,3 +153,61 @@ numberButtons.forEach((element) => {
     calculatorScreen.textContent = currentNumber;
   });
 });
+
+document.addEventListener(`keyup`, checkKey);
+function checkKey(e) {
+  if (e.key == 1) {
+    document.querySelector(`#buttonOne`).click();
+  }
+  if (e.key == 2) {
+    document.querySelector(`#buttonTwo`).click();
+  }
+  if (e.key == 3) {
+    document.querySelector(`#buttonThree`).click();
+  }
+  if (e.key == 4) {
+    document.querySelector(`#buttonFour`).click();
+  }
+  if (e.key == 5) {
+    document.querySelector(`#buttonFive`).click();
+  }
+  if (e.key == 6) {
+    document.querySelector(`#buttonSix`).click();
+  }
+  if (e.key == 7) {
+    document.querySelector(`#buttonSeven`).click();
+  }
+  if (e.key == 8) {
+    document.querySelector(`#buttonEight`).click();
+  }
+  if (e.key == 9) {
+    document.querySelector(`#buttonNine`).click();
+  }
+  if (e.key == 0) {
+    document.querySelector(`#buttonZero`).click();
+  }
+  if (e.key == `c`) {
+    document.querySelector(`#buttonClear`).click();
+  }
+  if (e.key == `.`) {
+    document.querySelector(`#buttonPoint`).click();
+  }
+  if (e.key == `+`) {
+    document.querySelector(`#buttonAddition`).click();
+  }
+  if (e.key == `-`) {
+    document.querySelector(`#buttonSubtraction`).click();
+  }
+  if (e.key == `*`) {
+    document.querySelector(`#buttonMultiplication`).click();
+  }
+  if (e.key == `/`) {
+    document.querySelector(`#buttonDivision`).click();
+  }
+  if (e.keyCode == 13) {
+    document.querySelector(`#buttonEquals`).click();
+  }
+  if (e.keyCode == 8) {
+    document.querySelector(`#buttonBackspace`).click();
+  }
+}
