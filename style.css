@@ -41,9 +41,6 @@ body {
   cursor: default;
 }
 
-.button:active {
-  border: 2px solid rgb(243, 243, 77);
-}
 .button:hover {
   transform: scale(1.2);
 }
@@ -57,6 +54,12 @@ body {
   background-color: rgb(134, 130, 130);
   border-radius: 5px;
   cursor: pointer;
+}
+.button:active {
+  border: 2px solid rgb(243, 243, 77);
+}
+.yellowBorder {
+  border: 2px solid rgb(243, 243, 77);
 }
 #buttonClear,
 #buttonBackspace {
