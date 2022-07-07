@@ -69,10 +69,12 @@ const calculatorScreen = document.querySelector(`#screen`);
 
 const clearButton = document.querySelector(`#buttonClear`);
 clearButton.addEventListener(`click`, clear);
+
 const equalsButton = document.getElementById(`buttonEquals`);
 equalsButton.addEventListener(`click`, (e) => {
   if (currentNumber == 0 && operator == divide) {
     clear();
+    calculatorScreen.textContent = `ERROR,DIVISION BY 0`;
   }
   if (!previousNumber || !operator || !currentNumber) {
     return;
