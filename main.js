@@ -154,7 +154,7 @@ numberButtons.forEach((element) => {
   });
 });
 
-document.addEventListener(`keyup`, checkKey);
+document.addEventListener(`keydown`, checkKey);
 function checkKey(e) {
   if (e.key == 1) {
     document.querySelector(`#buttonOne`).click();
