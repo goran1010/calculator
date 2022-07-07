@@ -236,79 +236,61 @@ function onKeyDown(e) {
 document.addEventListener(`keyup`, onKeyUp);
 function onKeyUp(e) {
   if (e.key == 1) {
-    document.querySelector(`#buttonOne`).click();
     document.querySelector(`#buttonOne`).classList.remove(`yellowBorder`);
   }
   if (e.key == 2) {
-    document.querySelector(`#buttonTwo`).click();
     document.querySelector(`#buttonTwo`).classList.remove(`yellowBorder`);
   }
   if (e.key == 3) {
-    document.querySelector(`#buttonThree`).click();
     document.querySelector(`#buttonThree`).classList.remove(`yellowBorder`);
   }
   if (e.key == 4) {
-    document.querySelector(`#buttonFour`).click();
     document.querySelector(`#buttonFour`).classList.remove(`yellowBorder`);
   }
   if (e.key == 5) {
-    document.querySelector(`#buttonFive`).click();
     document.querySelector(`#buttonFive`).classList.remove(`yellowBorder`);
   }
   if (e.key == 6) {
-    document.querySelector(`#buttonSix`).click();
     document.querySelector(`#buttonSix`).classList.remove(`yellowBorder`);
   }
   if (e.key == 7) {
-    document.querySelector(`#buttonSeven`).click();
     document.querySelector(`#buttonSeven`).classList.remove(`yellowBorder`);
   }
   if (e.key == 8) {
-    document.querySelector(`#buttonEight`).click();
     document.querySelector(`#buttonEight`).classList.remove(`yellowBorder`);
   }
   if (e.key == 9) {
-    document.querySelector(`#buttonNine`).click();
     document.querySelector(`#buttonNine`).classList.remove(`yellowBorder`);
   }
   if (e.key == 0) {
-    document.querySelector(`#buttonZero`).click();
     document.querySelector(`#buttonZero`).classList.remove(`yellowBorder`);
   }
   if (e.key == `c`) {
-    document.querySelector(`#buttonClear`).click();
     document.querySelector(`#buttonClear`).classList.remove(`yellowBorder`);
   }
   if (e.key == `.`) {
-    document.querySelector(`#buttonPoint`).click();
     document.querySelector(`#buttonPoint`).classList.remove(`yellowBorder`);
   }
   if (e.key == `+`) {
-    document.querySelector(`#buttonAddition`).click();
     document.querySelector(`#buttonAddition`).classList.remove(`yellowBorder`);
   }
   if (e.key == `-`) {
-    document.querySelector(`#buttonSubtraction`).click();
     document
       .querySelector(`#buttonSubtraction`)
       .classList.remove(`yellowBorder`);
   }
   if (e.key == `*`) {
-    document.querySelector(`#buttonMultiplication`).click();
     document
       .querySelector(`#buttonMultiplication`)
       .classList.remove(`yellowBorder`);
   }
   if (e.key == `/`) {
-    document.querySelector(`#buttonDivision`).click();
     document.querySelector(`#buttonDivision`).classList.remove(`yellowBorder`);
   }
   if (e.keyCode == 13) {
-    document.querySelector(`#buttonEquals`).click();
     document.querySelector(`#buttonEquals`).classList.remove(`yellowBorder`);
   }
   if (e.keyCode == 8) {
-    document.querySelector(`#buttonBackspace`).click();
     document.querySelector(`#buttonBackspace`).classList.remove(`yellowBorder`);
   }
 }
