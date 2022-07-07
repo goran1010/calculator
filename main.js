@@ -86,6 +86,7 @@ equalsButton.addEventListener(`click`, (e) => {
 const numberButtons = Array.from(document.querySelectorAll(`.numberButton`));
 numberButtons.forEach((element) => {
   element.addEventListener(`click`, (e) => {
+    if (Number(currentNumber) > 9999999999999) return;
     if (!previousNumber && !currentNumber && e.target.textContent == 0) {
       return;
     }
