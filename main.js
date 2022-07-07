@@ -70,6 +70,16 @@ const calculatorScreen = document.querySelector(`#screen`);
 const clearButton = document.querySelector(`#buttonClear`);
 clearButton.addEventListener(`click`, clear);
 
+const backspaceButton = document.querySelector(`#buttonBackspace`);
+backspaceButton.addEventListener(`click`, () => {
+  if (!currentNumber) return;
+  currentNumber = currentNumber.slice(0, currentNumber.length - 1);
+  if (currentNumber == ``) {
+    currentNumber = undefined;
+    calculatorScreen.textContent = 0;
+  } else calculatorScreen.textContent = currentNumber;
+});
+
 const equalsButton = document.getElementById(`buttonEquals`);
 equalsButton.addEventListener(`click`, (e) => {
   if (currentNumber == 0 && operator == divide) {
@@ -89,6 +99,7 @@ const numberButtons = Array.from(document.querySelectorAll(`.numberButton`));
 numberButtons.forEach((element) => {
   element.addEventListener(`click`, (e) => {
     if (Number(currentNumber) > 9999999999999) return;
+    if (!currentNumber && e.target.textContent == `.`) return;
     if (!previousNumber && !currentNumber && e.target.textContent == 0) {
       return;
     }

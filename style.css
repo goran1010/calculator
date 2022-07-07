@@ -16,14 +16,17 @@ body {
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
-  height: 250px;
+  height: 280px;
   justify-content: space-between;
   border: 4px solid black;
   border-radius: 5px;
+  margin: 20px;
 }
 .row {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+  user-select: none;
 }
 #screen {
   border: 2px solid black;
@@ -54,6 +57,13 @@ body {
   background-color: rgb(134, 130, 130);
   border-radius: 5px;
   cursor: pointer;
+}
+#buttonClear,
+#buttonBackspace {
+  flex: 1;
+}
+#buttonBackspace {
+  background-color: rgb(233, 73, 73);
 }
 #buttonDivision,
 #buttonAddition,
