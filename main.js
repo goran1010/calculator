@@ -17,22 +17,25 @@ function divide(a, b) {
   return Math.round((Number(a) / Number(b)) * 1000000) / 1000000;
 }
 
+function clear() {
+  previousNumber = undefined;
+  currentNumber = undefined;
+  operator = undefined;
+  calculatorScreen.textContent = 0;
+}
+
+function checkCurrentOperator(e) {
+  if (e.target.textContent === `+`) return add;
+  if (e.target.textContent === `-`) return subtract;
+  if (e.target.textContent === `*`) return multiply;
+  return divide;
+}
+
 function calculate(e) {
   if (currentNumber == 0 && operator == divide) {
-    previousNumber = undefined;
-    currentNumber = undefined;
-    operator = undefined;
-    calculatorScreen.textContent = `ERROR`;
+    clear();
   }
-  if (e.target.textContent === `+`) {
-    currentOperator = add;
-  } else if (e.target.textContent === `-`) {
-    currentOperator = subtract;
-  } else if (e.target.textContent === `*`) {
-    currentOperator = multiply;
-  } else {
-    currentOperator = divide;
-  }
+  currentOperator = checkCurrentOperator(e);
   if (operator === `equals`) {
     operator = currentOperator;
     calculatorScreen.textContent = `${previousNumber} ${e.target.textContent}`;
@@ -55,35 +58,21 @@ function calculate(e) {
   }
 }
 
-const subtractionButton = document.getElementById(`buttonSubtraction`);
-subtractionButton.addEventListener(`click`, calculate);
-
-const divisionButton = document.getElementById(`buttonDivision`);
-divisionButton.addEventListener(`click`, calculate);
-
-const additionButton = document.getElementById(`buttonAddition`);
-additionButton.addEventListener(`click`, calculate);
-
-const multiplicationButton = document.getElementById(`buttonMultiplication`);
-multiplicationButton.addEventListener(`click`, calculate);
+const operatorButtons = Array.from(
+  document.querySelectorAll(`.operatorButton`)
+);
+operatorButtons.forEach((element) =>
+  element.addEventListener(`click`, calculate)
+);
 
 const calculatorScreen = document.querySelector(`#screen`);
 
 const clearButton = document.querySelector(`#buttonClear`);
-clearButton.addEventListener(`click`, (e) => {
-  previousNumber = undefined;
-  currentNumber = undefined;
-  operator = undefined;
-  calculatorScreen.textContent = 0;
-});
-
+clearButton.addEventListener(`click`, clear);
 const equalsButton = document.getElementById(`buttonEquals`);
 equalsButton.addEventListener(`click`, (e) => {
   if (currentNumber == 0 && operator == divide) {
-    previousNumber = undefined;
-    currentNumber = undefined;
-    operator = undefined;
-    calculatorScreen.textContent = `ERROR`;
+    clear();
   }
   if (!previousNumber || !operator || !currentNumber) {
     return;
