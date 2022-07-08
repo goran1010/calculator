@@ -35,7 +35,13 @@ function calculate(e) {
   if (currentNumber == 0 && operator == divide) {
     clear();
   }
+
   currentOperator = checkCurrentOperator(e);
+  if (operator == `equals` && !previousNumber && currentNumber) {
+    previousNumber = currentNumber;
+    currentNumber = undefined;
+    operator = currentOperator;
+  }
   if (operator === `equals`) {
     operator = currentOperator;
     calculatorScreen.textContent = `${previousNumber} ${e.target.textContent}`;
@@ -143,10 +149,9 @@ numberButtons.forEach((element) => {
     if (operator === `equals`) {
       if (!currentNumber) {
         currentNumber = e.target.textContent;
-        previousNumber = currentNumber;
+        previousNumber = undefined;
       } else {
         currentNumber += e.target.textContent;
-        previousNumber = currentNumber;
       }
     } else if (!currentNumber) {
       currentNumber = e.target.textContent;
