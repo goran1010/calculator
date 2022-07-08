@@ -41,6 +41,7 @@ function calculate(e) {
     previousNumber = currentNumber;
     currentNumber = undefined;
     operator = currentOperator;
+    calculatorScreen.textContent = `${previousNumber} ${e.target.textContent}`;
   }
   if (operator === `equals`) {
     operator = currentOperator;
