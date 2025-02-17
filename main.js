@@ -36,7 +36,7 @@ function calculate(e) {
     clear();
   }
 
-  currentOperator = checkCurrentOperator(e);
+  let currentOperator = checkCurrentOperator(e);
   if (operator == `equals` && !previousNumber && currentNumber) {
     previousNumber = currentNumber;
     currentNumber = undefined;
